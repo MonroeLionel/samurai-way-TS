@@ -1,0 +1,9 @@
+.content {
+    background: #fbd485;
+    grid-area: c;
+}
+
+.content img {
+    width: 800px;
+}
+
