@@ -5,15 +5,20 @@
 
 
 .dialog {
-
+    color: aliceblue;
 }
 
 
 .dialogItem {
+
     padding: 10px;
 }
 
-.dialogItem .active {
+.dialogItem a {
+    text-decoration: none;
+}
+
+.dialog a.active {
     color: #fb9344;
 }
 
