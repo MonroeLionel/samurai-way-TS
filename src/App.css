@@ -13,3 +13,9 @@
 }
 
 
+.app-wrapper-content {
+
+    background: #fbd485;
+    grid-area: c;
+}
+
