@@ -4,16 +4,19 @@ import {Post} from "./Post/Post";
 
 
 export function MyPosts() {
-    return (
+   return (
+     <div className={classes.postsBlock}>
+        <div><h3>мои посты</h3></div>
+        <div><textarea></textarea></div>
         <div>
-            <div>посты</div>
-            <div>новые посты</div>
-            <div className="post">
-                <Post message={`hello`} likeCount={22}/>
-                <Post message={`шо как `} likeCount={4}/>
-
-
-            </div>
+           <button>добавить пост</button>
         </div>
-    )
+        <div className={classes.post}>
+           <Post message={`hello`} likeCount={22}/>
+           <Post message={`шо как `} likeCount={4}/>
+
+
+        </div>
+     </div>
+   )
 }
