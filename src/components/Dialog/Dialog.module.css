@@ -12,6 +12,7 @@
 .dialogItem {
 
     padding: 10px;
+    color: #f2fbf6;
 }
 
 .dialogItem a {
@@ -29,4 +30,8 @@
 
 .message {
 
+}
+
+.messages .message {
+    color: #0a1246;
 }

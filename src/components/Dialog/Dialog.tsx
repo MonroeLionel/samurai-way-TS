@@ -36,6 +36,10 @@ export function Dialogs() {
       {id: 5, name: `володя`},
       {id: 6, name: `павлуша`},
    ]
+
+   let dialogsElemens = dialogData.map((dialog) => {
+      return <DialogItem id={dialog.id} name={dialog.name}/>
+   })
    let messageData = [
       {id: 1, message: `текст`},
       {id: 2, message: `еще текст`},
@@ -44,16 +48,18 @@ export function Dialogs() {
       {id: 5, message: `типичная запись`},
       {id: 6, message: `типичная запись`},
    ]
+   let messageElements = messageData.map((message) => {
+      return <Message message={message.message} id={message.id}/>
+   })
    return (
      <div className={classes.dialogs}>
         <div className={classes.dialogItem}>
-           <DialogItem id={dialogData[0].id} name={dialogData[0].name}/>
-           <DialogItem id={dialogData[1].id} name={dialogData[1].name}/>
+           {dialogsElemens}
+
 
         </div>
         <div className={classes.messages}>
-           <Message message={messageData[0].message} id={messageData[0].id}/>
-           <Message message={messageData[1].message} id={messageData[1].id}/>
+           {messageElements}
 
         </div>
      </div>
