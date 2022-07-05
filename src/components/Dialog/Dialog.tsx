@@ -2,27 +2,50 @@ import React from "react";
 import classes from "./Dialog.module.css"
 import {NavLink} from "react-router-dom";
 
+type DialogItemType = {
+   name: string
+   id: number
+}
+type MessageType = {
+   message: string
+}
+const DialogItem = (props: DialogItemType) => {
+   return (
+     <div className={classes.dialog}>
+        <NavLink
+          to={"/dialogs/" + props.id}
+          activeClassName={classes.active}>{props.name}
+        </NavLink>
+     </div>
+   )
+}
+const Message = (props: MessageType) => {
+   return (
+     <div className={classes.message}>{props.message}</div>
 
-export function Dialog() {
+   )
+}
+
+export function Dialogs() {
+
    return (
      <div className={classes.dialogs}>
         <div className={classes.dialogItem}>
-           <div className={classes.dialog}><NavLink to="/dialogs/1" activeClassName={classes.active}>света</NavLink>
-           </div>
-           <div className={classes.dialog}><NavLink to="/dialogs/2" activeClassName={classes.active}>дима</NavLink>
-           </div>
-           <div className={classes.dialog}><NavLink to="/dialogs/3" activeClassName={classes.active}>катя</NavLink>
-           </div>
-           <div className={classes.dialog}><NavLink to="/dialogs/4" activeClassName={classes.active}>аня</NavLink></div>
-           <div className={classes.dialog}><NavLink to="/dialogs/5" activeClassName={classes.active}>володя</NavLink>
-           </div>
-           <div className={classes.dialog}><NavLink to="/dialogs/6" activeClassName={classes.active}>павлуша</NavLink>
-           </div>
+           <DialogItem id={1} name="Света"/>
+           <DialogItem id={2} name="дима"/>
+           <DialogItem id={3} name="катя"/>
+           <DialogItem id={4} name="аня"/>
+           <DialogItem id={5} name="володя"/>
+           <DialogItem id={6} name="павлуша"/>
+
         </div>
         <div className={classes.messages}>
-           <div className={classes.message}>текст</div>
-           <div className={classes.message}>еще текст</div>
-           <div className={classes.message}>типичная запись</div>
+           <Message message={`текст`}/>
+           <Message message={`еще текст`}/>
+           <Message message={`типичная запись`}/>
+           <Message message={`типичная запись`}/>
+           <Message message={`типичная запись`}/>
+           <Message message={`типичная запись`}/>
         </div>
      </div>
    )
