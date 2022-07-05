@@ -4,6 +4,7 @@ import classes from "./Post.module.css";
 type messageType = {
    message: string
    likeCount: number
+   id: number
 }
 
 export function Post(props: messageType) {
