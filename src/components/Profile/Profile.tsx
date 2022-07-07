@@ -5,15 +5,17 @@ import {Profileinfo} from "./Profileinfo/Profileinfo";
 import {postDataType} from "../../App";
 
 type propsTypeProps = {
+   state: {
+      postData: Array<postDataType>
 
-   postData: Array<postDataType>
+   }
 }
 
 export function Profile(props: propsTypeProps) {
    return (
      <div>
         <Profileinfo/>
-        <MyPosts postData={props.postData}/>
+        <MyPosts postData={props.state.postData}/>
      </div>
    )
 }

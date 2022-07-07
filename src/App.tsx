@@ -9,11 +9,7 @@ import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Setting} from "./components/Setting/Setting";
 
-type propsTypeProps = {
-   dialogData: Array<dialogDataType>
-   messageData: Array<messageDataType>
-   postData: Array<postDataType>
-}
+
 export type dialogDataType = {
    id: number
    name: string
@@ -28,7 +24,24 @@ export type postDataType = {
    likeCount: number
 }
 
-function App(props: propsTypeProps) {
+type StatePropsType = {
+   State: {
+      profilepage: {
+         postData: Array<postDataType>
+
+      },
+      dialogsPage: {
+         messageData: Array<messageDataType>
+         dialogData: Array<dialogDataType>
+
+      },
+
+   }
+}
+
+
+function App(props: StatePropsType) {
+
    return (
      <BrowserRouter>
         <div className="app-wrapper">
@@ -38,11 +51,12 @@ function App(props: propsTypeProps) {
 
            <div className="app-wrapper-content">
               {/*<Route path="/profile" component={Profile}/>*/}
-              <Route path="/profile" render={() => <Profile postData={props.postData}/>}/>
+              <Route path="/profile" render={() => <Profile state={props.State.profilepage}/>}/>
 
 
               <Route path="/dialogs"
-                     render={() => <Dialogs messageData={props.messageData} dialogData={props.dialogData}/>}/>
+                     render={() => <Dialogs state={props.State.dialogsPage}
+                     />}/>
               <Route path="/news" render={() => <News/>}/>
               <Route path="/music" render={() => <Music/>}/>
               <Route path="/setting" render={() => <Setting/>}/>
