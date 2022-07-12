@@ -9,13 +9,14 @@ type propsTypeProps = {
       postData: Array<postDataType>
 
    }
+   addPost: (postMessge: string) => void
 }
 
 export function Profile(props: propsTypeProps) {
    return (
      <div>
         <Profileinfo/>
-        <MyPosts postData={props.state.postData}/>
+        <MyPosts postData={props.state.postData} addPost={props.addPost}/>
      </div>
    )
 }

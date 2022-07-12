@@ -37,6 +37,7 @@ type StatePropsType = {
       },
 
    }
+   addPost: (postMessge: string) => void
 }
 
 
@@ -51,7 +52,7 @@ function App(props: StatePropsType) {
 
            <div className="app-wrapper-content">
               {/*<Route path="/profile" component={Profile}/>*/}
-              <Route path="/profile" render={() => <Profile state={props.State.profilepage}/>}/>
+              <Route path="/profile" render={() => <Profile state={props.State.profilepage} addPost={props.addPost}/>}/>
 
 
               <Route path="/dialogs"

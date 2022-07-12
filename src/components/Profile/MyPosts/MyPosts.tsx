@@ -5,6 +5,7 @@ import {postDataType} from "../../../App";
 
 type postDataPropsTpe = {
    postData: Array<postDataType>
+   addPost: (postMessge: string) => void
 }
 
 export function MyPosts(props: postDataPropsTpe) {
@@ -19,7 +20,7 @@ export function MyPosts(props: postDataPropsTpe) {
       let text = newPostElement.current
       if (text) {
          console.log(text.value)
-         alert(text.value)
+         props.addPost(text.value)
       }
 
 
