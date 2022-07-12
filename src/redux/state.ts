@@ -1,3 +1,5 @@
+import {rerenderEntireTree} from "../render";
+
 let state = {
    profilepage: {
       postData: [
@@ -39,9 +41,25 @@ let state = {
    },
 }
 
+export let testpostData: [
+   { id: 1, message: `hello`, likeCount: 22 },
+   { id: 1, message: `hello`, likeCount: 22 },
+   { id: 1, message: `hello`, likeCount: 22 },
+   { id: 1, message: `hello`, likeCount: 22 },
+   { id: 1, message: `hello`, likeCount: 22 },
+   { id: 1, message: `hello`, likeCount: 22 },
+   { id: 2, message: `шо как`, likeCount: 11 },
+   { id: 2, message: `шо как`, likeCount: 11 },
+   { id: 2, message: `шо как`, likeCount: 11 },
+   { id: 3, message: `чо кого ? `, likeCount: 12 },
+   { id: 3, message: `чо кого ? `, likeCount: 12 },
+]
+
+
 export const addPost = (postMessge: string) => {
    let newPost = {id: 13, message: postMessge, likeCount: 12}
    state.profilepage.postData.push(newPost)
+   rerenderEntireTree(state)
 }
 
 export default state

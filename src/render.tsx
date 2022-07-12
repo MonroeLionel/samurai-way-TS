@@ -1,0 +1,27 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App, {dialogDataType, messageDataType, postDataType} from './App';
+import {addPost} from './redux/state'
+
+
+export type StatePropsType = {
+
+   profilepage: {
+      postData: Array<postDataType>
+   },
+   dialogsPage: {
+      messageData: Array<messageDataType>
+      dialogData: Array<dialogDataType>
+   },
+
+}
+
+export const rerenderEntireTree = (State: StatePropsType) => {
+
+
+   ReactDOM.render(
+     <App State={State} addPost={addPost}/>,
+     document.getElementById('root')
+   );
+}

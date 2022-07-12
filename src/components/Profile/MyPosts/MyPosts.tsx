@@ -21,6 +21,7 @@ export function MyPosts(props: postDataPropsTpe) {
       if (text) {
          console.log(text.value)
          props.addPost(text.value)
+         text.value = ``
       }
 
 
