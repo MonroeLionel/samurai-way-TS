@@ -15,6 +15,7 @@ let state = {
          {id: 3, message: `чо кого ? `, likeCount: 12},
          {id: 3, message: `чо кого ? `, likeCount: 12},
       ],
+      newPostText: 'ddddd',
 
    },
    dialogsPage: {
@@ -56,10 +57,17 @@ export let testpostData: [
 ]
 
 
-export const addPost = (postMessge: string) => {
-   let newPost = {id: 13, message: postMessge, likeCount: 12}
+export const addPost = () => {
+   let newPost = {id: 13, message: state.profilepage.newPostText, likeCount: 12}
    state.profilepage.postData.push(newPost)
+   state.profilepage.newPostText = ''
    rerenderEntireTree(state)
 }
+
+export const updateNewPostText = (newText: string) => {
+   state.profilepage.newPostText = newText
+   rerenderEntireTree(state)
+}
+
 
 export default state

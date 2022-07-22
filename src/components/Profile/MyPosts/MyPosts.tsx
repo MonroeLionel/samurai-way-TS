@@ -1,11 +1,14 @@
-import React, {LegacyRef} from "react";
+import React, {ChangeEvent, ChangeEventHandler, LegacyRef} from "react";
 import classes from "./MyPosts.module.css";
 import {Post} from "./Post/Post";
 import {postDataType} from "../../../App";
 
 type postDataPropsTpe = {
    postData: Array<postDataType>
-   addPost: (postMessge: string) => void
+   addPost: () => void
+   newPostText: string
+   updateNewPostText: (newText: string) => void
+
 }
 
 export function MyPosts(props: postDataPropsTpe) {
@@ -20,17 +23,18 @@ export function MyPosts(props: postDataPropsTpe) {
       let text = newPostElement.current
       if (text) {
          console.log(text.value)
-         props.addPost(text.value)
-         text.value = ``
+         props.addPost()
       }
 
 
    }
-
+   let onPostChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+      props.updateNewPostText(event.currentTarget.value)
+   }
    return (
      <div className={classes.postsBlock}>
         <div><h3>мои посты</h3></div>
-        <div><textarea ref={newPostElement}></textarea></div>
+        <div><textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}></textarea></div>
         <div>
            <button onClick={addPost
            }>добавить пост

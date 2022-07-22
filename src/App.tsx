@@ -28,7 +28,7 @@ type StatePropsType = {
    State: {
       profilepage: {
          postData: Array<postDataType>
-
+         newPostText: string
       },
       dialogsPage: {
          messageData: Array<messageDataType>
@@ -37,7 +37,8 @@ type StatePropsType = {
       },
 
    }
-   addPost: (postMessge: string) => void
+   addPost: () => void
+   updateNewPostText: (newText: string) => void
 }
 
 
@@ -52,11 +53,19 @@ function App(props: StatePropsType) {
 
            <div className="app-wrapper-content">
               {/*<Route path="/profile" component={Profile}/>*/}
-              <Route path="/profile" render={() => <Profile state={props.State.profilepage} addPost={props.addPost}/>}/>
+              <Route path="/profile"
+                     render={() => <Profile
+                       profilepage={props.State.profilepage}
+                       addPost={props.addPost}
+                       updateNewPostText={props.updateNewPostText}
+
+                     />}
+              />
 
 
               <Route path="/dialogs"
-                     render={() => <Dialogs state={props.State.dialogsPage}
+                     render={() => <Dialogs
+                       state={props.State.dialogsPage}
                      />}/>
               <Route path="/news" render={() => <News/>}/>
               <Route path="/music" render={() => <Music/>}/>
