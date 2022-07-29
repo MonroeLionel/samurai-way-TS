@@ -2,12 +2,25 @@ import {StatePropsType} from "../index";
 
 export type StoreType = {
    _state: StatePropsType
-   updateNewPostText: (newText: string) => void
-   addPost: () => void
+   // updateNewPostText: (newText: string) => void
+   // addPost: () => void
    subscribe: (callback: (State: StatePropsType) => void) => void
-   _rerenderEntireTree: (state: StatePropsType) => void
+   _callSubscriber: (state: StatePropsType) => void
    getState: () => StatePropsType
+   dispatch: (action: ActionType) => void
 }
+
+type AddPostActionType = {
+   type: "ADD-POST",
+   // postText: string
+}
+type ChangeNewTextActionType = {
+   type: "CHANGE-NEW-TEXT",
+   newText: string
+}
+
+
+export type ActionType = AddPostActionType | ChangeNewTextActionType
 
 let store: StoreType = {
    _state: {
@@ -51,25 +64,41 @@ let store: StoreType = {
 
       },
    },
+   _callSubscriber(State: StatePropsType) {
+   },
+
    getState() {
       return this._state
    },
-   _rerenderEntireTree(State: StatePropsType) {
-   },
-   addPost() {
-      let newPost = {id: 13, message: this._state.profilepage.newPostText, likeCount: 12}
-      this._state.profilepage.postData.push(newPost)
-      this._state.profilepage.newPostText = ''
-      this._rerenderEntireTree(this._state)
-   },
-   updateNewPostText(newText: string) {
-      this._state.profilepage.newPostText = newText
-      this._rerenderEntireTree(this._state)
-   },
+   // addPost() {
+   //    let newPost = {id: 13, message: this._state.profilepage.newPostText, likeCount: 12}
+   //    this._state.profilepage.postData.push(newPost)
+   //    this._state.profilepage.newPostText = ''
+   //    this._callSubscriber(this._state)
+   // },
+   // updateNewPostText(newText: string) {
+   //    this._state.profilepage.newPostText = newText
+   //    this._callSubscriber(this._state)
+   // },
    subscribe(observer: (State: StatePropsType) => void) {
-      this._rerenderEntireTree = observer
-   }
-
+      this._callSubscriber = observer
+   },
+   dispatch(action) {
+      if (action.type === "ADD-POST") {
+         let newPost = {
+            id: 13,
+            message: this._state.profilepage.newPostText,
+            // message: action.postText,
+            likeCount: 12
+         }
+         this._state.profilepage.postData.push(newPost)
+         this._state.profilepage.newPostText = ''
+         this._callSubscriber(this._state)
+      } else if (action.type === "CHANGE-NEW-TEXT") {
+         this._state.profilepage.newPostText = action.newText
+         this._callSubscriber(this._state)
+      }
+   },
 }
 //
 // let state = {

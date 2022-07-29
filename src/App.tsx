@@ -8,6 +8,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Setting} from "./components/Setting/Setting";
+import {ActionType} from "./redux/state";
 
 
 export type dialogDataType = {
@@ -37,8 +38,9 @@ type StatePropsType = {
       },
 
    }
-   addPost: () => void
-   updateNewPostText: (newText: string) => void
+   // addPost: () => void
+   // updateNewPostText: (newText: string) => void
+   dispatch: (action: ActionType) => void
 }
 
 
@@ -56,9 +58,9 @@ function App(props: StatePropsType) {
               <Route path="/profile"
                      render={() => <Profile
                        profilepage={props.State.profilepage}
-                       addPost={props.addPost}
-                       updateNewPostText={props.updateNewPostText}
-
+                       // addPost={props.addPost}
+                       // updateNewPostText={props.updateNewPostText}
+                       dispatch={props.dispatch}
                      />}
               />
 

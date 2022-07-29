@@ -2,13 +2,14 @@ import React, {ChangeEvent, ChangeEventHandler, LegacyRef} from "react";
 import classes from "./MyPosts.module.css";
 import {Post} from "./Post/Post";
 import {postDataType} from "../../../App";
+import {ActionType} from "../../../redux/state";
 
 type postDataPropsTpe = {
    postData: Array<postDataType>
-   addPost: () => void
+   // addPost: () => void
    newPostText: string
-   updateNewPostText: (newText: string) => void
-
+   // updateNewPostText: (newText: string) => void
+   dispatch: (action: ActionType) => void
 }
 
 export function MyPosts(props: postDataPropsTpe) {
@@ -23,14 +24,16 @@ export function MyPosts(props: postDataPropsTpe) {
       let text = newPostElement.current
       if (text) {
          console.log(text.value)
-         props.addPost()
+         // props.addPost()
+         props.dispatch({type: "ADD-POST"})
       }
-
-
    }
+
    let onPostChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-      props.updateNewPostText(event.currentTarget.value)
+      let text = event.currentTarget.value
+      props.dispatch({type: "CHANGE-NEW-TEXT", newText: text})
    }
+
    return (
      <div className={classes.postsBlock}>
         <div><h3>мои посты</h3></div>
@@ -42,8 +45,6 @@ export function MyPosts(props: postDataPropsTpe) {
         </div>
         <div className={classes.post}>
            {postsElements}
-
-
         </div>
      </div>
    )
