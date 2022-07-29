@@ -1,11 +1,10 @@
 import React from 'react';
 import './index.css';
-import state, {subscribe} from './redux/state'
+import store from './redux/state'
 
 import ReactDOM from 'react-dom';
 import './index.css';
 import App, {dialogDataType, messageDataType, postDataType} from './App';
-import {addPost, updateNewPostText} from './redux/state'
 
 
 export type StatePropsType = {
@@ -25,11 +24,15 @@ const rerenderEntireTree = (State: StatePropsType) => {
 
 
    ReactDOM.render(
-     <App State={State} addPost={addPost} updateNewPostText={updateNewPostText}/>,
+     <App
+       State={store.getState()}
+       addPost={store.addPost.bind(store)}
+       updateNewPostText={store.updateNewPostText.bind(store)}
+     />,
      document.getElementById('root')
    );
 }
 
 
-rerenderEntireTree(state);
-subscribe(rerenderEntireTree);
+rerenderEntireTree(store.getState());
+store.subscribe(rerenderEntireTree);
