@@ -5,6 +5,7 @@ import store from './redux/state'
 import ReactDOM from 'react-dom';
 import './index.css';
 import App, {dialogDataType, messageDataType, postDataType} from './App';
+import {BrowserRouter} from "react-router-dom";
 
 
 export type StatePropsType = {
@@ -16,6 +17,7 @@ export type StatePropsType = {
    dialogsPage: {
       messageData: Array<messageDataType>
       dialogData: Array<dialogDataType>
+      newMessageBod: string
    },
 
 }
@@ -24,12 +26,14 @@ const rerenderEntireTree = (State: StatePropsType) => {
 
 
    ReactDOM.render(
-     <App
-       State={store.getState()}
-       dispatch={store.dispatch.bind(store)}
-       // addPost={store.addPost.bind(store)}
-       // updateNewPostText={store.updateNewPostText.bind(store)}
-     />,
+     <BrowserRouter>
+        <App
+          State={store.getState()}
+          dispatch={store.dispatch.bind(store)}
+          // addPost={store.addPost.bind(store)}
+          // updateNewPostText={store.updateNewPostText.bind(store)}
+        />
+     </BrowserRouter>,
      document.getElementById('root')
    );
 }
