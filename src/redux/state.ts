@@ -19,6 +19,16 @@ type ChangeNewTextActionType = {
    newText: string
 }
 
+export const addPostAC = (): AddPostActionType => {
+   return {type: "ADD-POST"}
+}
+export const updateNewPostTextAC = (newText: string): ChangeNewTextActionType => {
+   console.log(newText)
+   return {
+      type: "CHANGE-NEW-TEXT",
+      newText: newText
+   }
+}
 
 export type ActionType = AddPostActionType | ChangeNewTextActionType
 
@@ -181,3 +191,4 @@ let store: StoreType = {
 // export default state
 
 export default store;
+

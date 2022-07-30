@@ -2,7 +2,7 @@ import React, {ChangeEvent, ChangeEventHandler, LegacyRef} from "react";
 import classes from "./MyPosts.module.css";
 import {Post} from "./Post/Post";
 import {postDataType} from "../../../App";
-import {ActionType} from "../../../redux/state";
+import {ActionType, addPostAC, updateNewPostTextAC} from "../../../redux/state";
 
 type postDataPropsTpe = {
    postData: Array<postDataType>
@@ -11,6 +11,7 @@ type postDataPropsTpe = {
    // updateNewPostText: (newText: string) => void
    dispatch: (action: ActionType) => void
 }
+
 
 export function MyPosts(props: postDataPropsTpe) {
 
@@ -25,13 +26,13 @@ export function MyPosts(props: postDataPropsTpe) {
       if (text) {
          console.log(text.value)
          // props.addPost()
-         props.dispatch({type: "ADD-POST"})
+         props.dispatch(addPostAC())
       }
    }
 
    let onPostChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
       let text = event.currentTarget.value
-      props.dispatch({type: "CHANGE-NEW-TEXT", newText: text})
+      props.dispatch(updateNewPostTextAC(text))
    }
 
    return (
