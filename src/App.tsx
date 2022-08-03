@@ -9,6 +9,7 @@ import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Setting} from "./components/Setting/Setting";
 import {ActionType} from "./redux/store";
+import {DialogsContainer} from "./components/Dialog/DialogContainer";
 
 
 export type dialogDataType = {
@@ -25,7 +26,7 @@ export type postDataType = {
    likeCount: number
 }
 
-type StatePropsType = {
+export type StatePropsType = {
    State: {
       profilepage: {
          postData: Array<postDataType>
@@ -38,8 +39,7 @@ type StatePropsType = {
       },
 
    }
-   // addPost: () => void
-   // updateNewPostText: (newText: string) => void
+
    dispatch: (action: ActionType) => void
 }
 
@@ -56,19 +56,17 @@ function App(props: StatePropsType) {
         <div className="app-wrapper-content">
            {/*<Route path="/profile" component={Profile}/>*/}
            <Route path="/profile"
-                  render={() => <Profile
-                    profilepage={props.State.profilepage}
-                    // addPost={props.addPost}
-                    // updateNewPostText={props.updateNewPostText}
-                    dispatch={props.dispatch}
-                  />}
+                  render={() =>
+                    <Profile
+                      store={props}
+                    />}
            />
 
 
            <Route path="/dialogs"
-                  render={() => <Dialogs
-                    dispatch={props.dispatch}
-                    state={props.State.dialogsPage}
+                  render={() => <DialogsContainer
+
+                    store={props}
                   />}/>
            <Route path="/news" render={() => <News/>}/>
            <Route path="/music" render={() => <Music/>}/>

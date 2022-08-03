@@ -1,16 +1,13 @@
-import React, {ChangeEvent, ChangeEventHandler, LegacyRef} from "react";
+import React, {ChangeEvent} from "react";
 import classes from "./MyPosts.module.css";
 import {Post} from "./Post/Post";
 import {postDataType} from "../../../App";
-import {ActionType} from "../../../redux/store";
-import {addPostAC, updateNewPostTextAC} from "../../../redux/profile-reducer";
 
 type postDataPropsTpe = {
    postData: Array<postDataType>
-   // addPost: () => void
    newPostText: string
-   // updateNewPostText: (newText: string) => void
-   dispatch: (action: ActionType) => void
+   updateNewPostText: (text: string) => void
+   addPost: () => void
 }
 
 
@@ -26,23 +23,26 @@ export function MyPosts(props: postDataPropsTpe) {
       let text = newPostElement.current
       if (text) {
          console.log(text.value)
-         // props.addPost()
-         props.dispatch(addPostAC())
+         props.addPost()
       }
    }
-
-   let onPostChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+   const onPostChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
       let text = event.currentTarget.value
-      props.dispatch(updateNewPostTextAC(text))
+      props.updateNewPostText(text)
    }
 
    return (
      <div className={classes.postsBlock}>
         <div><h3>мои посты</h3></div>
-        <div><textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}></textarea></div>
+        <div><textarea
+          onChange={onPostChange}
+          ref={newPostElement}
+          value={props.newPostText}
+        ></textarea></div>
         <div>
-           <button onClick={addPost
-           }>добавить пост
+           <button
+             onClick={addPost}
+           >добавить пост
            </button>
         </div>
         <div className={classes.post}>
