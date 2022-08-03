@@ -2,7 +2,7 @@ import React, {ChangeEvent, ChangeEventHandler, LegacyRef} from "react";
 import classes from "./MyPosts.module.css";
 import {Post} from "./Post/Post";
 import {postDataType} from "../../../App";
-import {ActionType} from "../../../redux/state";
+import {ActionType} from "../../../redux/store";
 import {addPostAC, updateNewPostTextAC} from "../../../redux/profile-reducer";
 
 type postDataPropsTpe = {

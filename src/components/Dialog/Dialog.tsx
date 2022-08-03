@@ -3,7 +3,7 @@ import classes from "./Dialog.module.css"
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {dialogDataType, messageDataType} from "../../App";
-import {ActionType} from "../../redux/state";
+import {ActionType} from "../../redux/store";
 import {sendMessageAC, updateNewMessageBodyAC} from "../../redux/dialog-reducer";
 
 

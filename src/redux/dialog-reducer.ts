@@ -1,5 +1,5 @@
 import {dialogDataType, messageDataType} from "../App";
-import {ActionType} from "./state";
+import {ActionType} from "./store";
 
 type dialogReducerType = {
    messageData: Array<messageDataType>
@@ -7,8 +7,30 @@ type dialogReducerType = {
    newMessageBod: string
 }
 
+let inicialStae: dialogReducerType = {
+   messageData: [
+      {id: 1, message: `текст`},
+      {id: 2, message: `еще текст`},
+      {id: 2, message: `еще текст`},
+      {id: 2, message: `еще текст`},
+      {id: 2, message: `еще текст`},
+      {id: 3, message: `типичная запись`},
+      {id: 4, message: `типичная запись`},
+      {id: 5, message: `типичная запись`},
+      {id: 6, message: `типичная запись`},
+   ],
+   dialogData: [
+      {id: 1, name: `света`},
+      {id: 2, name: `дима`},
+      {id: 3, name: `катя`},
+      {id: 4, name: `аня`},
+      {id: 5, name: `володя`},
+      {id: 6, name: `павлуша`},
+   ],
+   newMessageBod: "",
+}
 
-const dialogReducer = (state: dialogReducerType, action: ActionType) => {
+const dialogReducer = (state = inicialStae, action: ActionType) => {
    switch (action.type) {
       case "UPDATE-NEW-MESSAGE-BODY":
          state.newMessageBod = action.body

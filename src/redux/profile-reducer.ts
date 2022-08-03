@@ -1,13 +1,29 @@
 import {postDataType} from "../App";
-import {ActionType} from "./state";
+import {ActionType} from "./store";
 
 type profileReducerType = {
    postData: Array<postDataType>
    newPostText: string
 }
 
+let inicialState: profileReducerType = {
+   postData: [
+      {id: 1, message: `hello`, likeCount: 22},
+      {id: 1, message: `hello`, likeCount: 22},
+      {id: 1, message: `hello`, likeCount: 22},
+      {id: 1, message: `hello`, likeCount: 22},
+      {id: 1, message: `hello`, likeCount: 22},
+      {id: 1, message: `hello`, likeCount: 22},
+      {id: 2, message: `шо как`, likeCount: 11},
+      {id: 2, message: `шо как`, likeCount: 11},
+      {id: 2, message: `шо как`, likeCount: 11},
+      {id: 3, message: `чо кого ? `, likeCount: 12},
+      {id: 3, message: `чо кого ? `, likeCount: 12},
+   ],
+   newPostText: 'ddddd',
+}
 
-const profileReducer = (state: profileReducerType, action: ActionType) => {
+const profileReducer = (state = inicialState, action: ActionType) => {
    switch (action.type) {
       case "ADD-POST":
          let newPost = {
