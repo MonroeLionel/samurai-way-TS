@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App, {dialogDataType, messageDataType, postDataType} from './App';
 import {BrowserRouter} from "react-router-dom";
+import StoreContext from "./StoreContext";
 
 
 export type StatePropsType = {
@@ -28,12 +29,15 @@ const rerenderEntireTree = () => {
 
    ReactDOM.render(
      <BrowserRouter>
-        <App
-          State={store.getState()}
-          dispatch={store.dispatch.bind(store)}
-          // addPost={store.addPost.bind(store)}
-          // updateNewPostText={store.updateNewPostText.bind(store)}
-        />
+        <StoreContext.Provider value={store}>
+
+           <App
+             State={store.getState()}
+             dispatch={store.dispatch.bind(store)}
+             // addPost={store.addPost.bind(store)}
+             // updateNewPostText={store.updateNewPostText.bind(store)}
+           />
+        </StoreContext.Provider>
      </BrowserRouter>,
      document.getElementById('root')
    );

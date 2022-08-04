@@ -21,6 +21,7 @@ export function MyPostsContainer(props: postDataPropsTpe) {
    }
 
    return (
+     
      <MyPosts
        updateNewPostText={onPostChange}
        postData={props.store.State.profilepage.postData}
