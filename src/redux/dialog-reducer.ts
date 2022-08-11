@@ -1,7 +1,7 @@
 import {dialogDataType, messageDataType} from "../App";
 import {ActionType} from "./store";
 
-type dialogReducerType = {
+export type dialogReducerType = {
    messageData: Array<messageDataType>
    dialogData: Array<dialogDataType>
    newMessageBod: string
@@ -30,7 +30,7 @@ let inicialStae: dialogReducerType = {
    newMessageBod: "",
 }
 
-const dialogReducer = (state = inicialStae, action: ActionType) => {
+const dialogReducer = (state = inicialStae, action: ActionType): dialogReducerType => {
    switch (action.type) {
       case "UPDATE-NEW-MESSAGE-BODY":
          state.newMessageBod = action.body

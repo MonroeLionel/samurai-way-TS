@@ -2,6 +2,7 @@ import React, {ChangeEvent} from "react";
 import classes from "./MyPosts.module.css";
 import {Post} from "./Post/Post";
 import {postDataType} from "../../../App";
+import {MyPostsPropsType} from "./MyPostsContainer";
 
 type postDataPropsTpe = {
    postData: Array<postDataType>
@@ -11,8 +12,7 @@ type postDataPropsTpe = {
 }
 
 
-export function MyPosts(props: postDataPropsTpe) {
-
+export function MyPosts(props: MyPostsPropsType) {
    let postsElements = props.postData.map((post) => {
       return <Post message={post.message} likeCount={post.likeCount} id={post.id}/>
    })
@@ -28,7 +28,7 @@ export function MyPosts(props: postDataPropsTpe) {
    }
    const onPostChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
       let text = event.currentTarget.value
-      props.updateNewPostText(text)
+      props.onPostChange(text)
    }
 
    return (

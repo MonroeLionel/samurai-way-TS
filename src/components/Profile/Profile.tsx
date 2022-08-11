@@ -15,9 +15,7 @@ export function Profile(props: propsTypeProps) {
    return (
      <div>
         <Profileinfo/>
-        <MyPostsContainer
-          store={props.store}
-        />
+        <MyPostsContainer/>
      </div>
    )
 }

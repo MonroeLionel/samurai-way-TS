@@ -3,6 +3,7 @@ import classes from "./Dialog.module.css"
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {dialogDataType, messageDataType,} from "../../App";
+import {DialogPropsType} from "./DialogContainer";
 
 
 type propsTypeProps = {
@@ -13,8 +14,7 @@ type propsTypeProps = {
    newMessageBod: string
 }
 
-export function Dialogs(props: propsTypeProps) {
-
+export function Dialogs(props: DialogPropsType) {
 
    let dialogsElemens = props.dialogData.map((dialog) => {
       return <DialogItem id={dialog.id} name={dialog.name}/>
