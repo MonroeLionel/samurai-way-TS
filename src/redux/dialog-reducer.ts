@@ -33,17 +33,17 @@ let inicialStae: dialogReducerType = {
 const dialogReducer = (state = inicialStae, action: ActionType): dialogReducerType => {
    switch (action.type) {
       case "UPDATE-NEW-MESSAGE-BODY": {
-         let stateCopy = {...state}
-         stateCopy.newMessageBod = action.body
-         return stateCopy
+         return {
+            ...state,
+            newMessageBod: action.body
+         }
       }
       case "SEND-MESSAGE": {
-         let stateCopy = {...state}
-         let body = stateCopy.newMessageBod
-         stateCopy.newMessageBod = ''
-         stateCopy.messageData = [...state.messageData]
-         stateCopy.messageData.push({id: 99, message: body})
-         return stateCopy
+         return {
+            ...state,
+            newMessageBod: '',
+            messageData: [...state.messageData, {id: 99, message: state.newMessageBod}]
+         }
       }
       default:
          return state
