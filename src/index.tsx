@@ -22,25 +22,22 @@ export type StatePropsType = {
 
 }
 
-const rerenderEntireTree = () => {
+
+ReactDOM.render(
+  <BrowserRouter>
+     <Provider store={store}>
+
+        <App
+          State={store.getState()}
+          dispatch={store.dispatch.bind(store)}
+          // addPost={store.addPost.bind(store)}
+          // updateNewPostText={store.updateNewPostText.bind(store)}
+        />
+     </Provider>
+  </BrowserRouter>,
+  document.getElementById('root')
+);
 
 
-   ReactDOM.render(
-     <BrowserRouter>
-        <Provider store={store}>
-
-           <App
-             State={store.getState()}
-             dispatch={store.dispatch.bind(store)}
-             // addPost={store.addPost.bind(store)}
-             // updateNewPostText={store.updateNewPostText.bind(store)}
-           />
-        </Provider>
-     </BrowserRouter>,
-     document.getElementById('root')
-   );
-}
-
-
-rerenderEntireTree();
-store.subscribe(rerenderEntireTree);
+// rerenderEntireTree();
+// store.subscribe(rerenderEntireTree);
