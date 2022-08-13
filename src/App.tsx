@@ -9,6 +9,8 @@ import {Music} from "./components/Music/Music";
 import {Setting} from "./components/Setting/Setting";
 import {ActionType} from "./redux/store";
 import {DialogsContainer} from "./components/Dialog/DialogContainer";
+import {Users} from "./components/Users/Users";
+import {UsersContainer} from "./components/Users/UsersContainer";
 
 
 export type dialogDataType = {
@@ -61,6 +63,7 @@ function App(props: StatePropsType) {
                     />}
            />
 
+           <Route path="/users" render={() => <UsersContainer/>}/>
 
            <Route path="/dialogs"
                   render={() =>

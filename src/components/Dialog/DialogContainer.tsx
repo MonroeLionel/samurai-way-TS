@@ -5,6 +5,7 @@ import {Dialogs} from "./Dialog";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
+import {setUsersAC, userReducerType} from "../../redux/users-reducer";
 
 
 type propsTypeProps = {
