@@ -7,9 +7,12 @@ export type usersReducerType = {
 export type userReducerType = Array<userObjReducerType>
 export type userObjReducerType = {
    id: number
-   photoUrl: string
+   photos: {
+      small: string
+      large: string
+   },
    followed: boolean
-   fullName: string
+   name: string
    status: string
    location: {
       city: string
