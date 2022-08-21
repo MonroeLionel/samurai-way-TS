@@ -1,56 +1,24 @@
 import React from "react";
-import {UsersStatePropsType} from "./UsersContainer";
 import css from "./users.module.css";
+import userGIF from "../../assets/images/user.gif";
 import axios from "axios";
-import userGIF from "./../../assets/images/user.gif"
+import {UsersStatePropsType} from "./UsersContainer";
 
-export function Users(props: UsersStatePropsType) {
-   if (props.users.length === 0) {
+class Users extends React.Component<UsersStatePropsType> {
+   constructor(props: UsersStatePropsType) {
+      super(props);
 
       axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-
-         props.setUsers(response.data.items)
+         this.props.setUsers(response.data.items)
       })
 
-      // props.setUsers([
-      //
-      //    {
-      //       id: 1,
-      //       photoUrl: "https://aniyuki.com/wp-content/uploads/2021/06/aniyuki-anime-avatars-gif-discord-72.gif",
-      //       followed: false,
-      //       fullName: `Dmitry`,
-      //       status: "i am a boss",
-      //       location: {city: "Minsk", country: "Belarus"}
-      //    },
-      //    {
-      //       id: 2,
-      //       photoUrl: "https://aniyuki.com/wp-content/uploads/2021/06/aniyuki-anime-avatars-gif-discord-13.gif",
-      //       followed: true,
-      //       fullName: `Sasha`,
-      //       status: "i am a boss",
-      //       location: {city: "Moskov", country: "Russia"}
-      //    },
-      //    {
-      //       id: 3,
-      //       photoUrl: "https://aniyuki.com/wp-content/uploads/2021/06/aniyuki-anime-avatars-gif-discord-6.gif",
-      //       followed: false,
-      //       fullName: `Andre`,
-      //       status: "i am a boss",
-      //       location: {city: "Kiev", country: "Ukraine"}
-      //    },
-      //    {
-      //       id: 4,
-      //       photoUrl: "https://aniyuki.com/wp-content/uploads/2021/06/aniyuki-anime-avatars-gif-discord-24.gif",
-      //       followed: true,
-      //       fullName: `Alex`,
-      //       status: "i am a boss",
-      //       location: {city: "Kiev", country: "Ukraine"}
-      //    },
-      // ])
    }
-   return (
-     <div>
-        {props.users.map(el => <div key={el.id}>
+
+
+   render() {
+      return (
+        <div>
+           {this.props.users.map(el => <div key={el.id}>
 <span>
    <div>
       <img className={css.userPhoto}
@@ -59,15 +27,15 @@ export function Users(props: UsersStatePropsType) {
    <div>
       {el.followed ?
         <button onClick={() => {
-           props.unFollow(el.id)
+           this.props.unFollow(el.id)
         }}>Follow</button>
         : <button onClick={() => {
-           props.follow(el.id)
+           this.props.follow(el.id)
         }}>Unfoolow</button>}
 
    </div>
 </span>
-           <span>
+              <span>
               <span>
                  <div></div>
                  <div></div>
@@ -81,7 +49,10 @@ export function Users(props: UsersStatePropsType) {
                  <div>{"el.location.city"}</div>
               </span>
            </span>
-        </div>)}
-     </div>
-   )
+           </div>)}
+        </div>
+      )
+   }
 }
+
+export default Users
