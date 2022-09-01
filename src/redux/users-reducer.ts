@@ -2,6 +2,9 @@ import exp from "constants";
 
 export type usersReducerType = {
    user: userReducerType
+   pageSize: number
+   totalUsersCount: number
+   currentPage: number
 }
 
 export type userReducerType = Array<userObjReducerType>
@@ -19,11 +22,15 @@ export type userObjReducerType = {
       country: string
    }
 }
-type ActionType = followACType | unFollowACType | setUsersACType
+type ActionType = followACType | unFollowACType | setUsersACType | setCurrentPageACType | setTotalUsersCountACType
 
 
 let inicialState: usersReducerType = {
    user: [],
+   pageSize: 5,
+   totalUsersCount: 0,
+   currentPage: 1
+
 }
 
 
@@ -42,7 +49,13 @@ const usersReducer = (state = inicialState, action: ActionType): usersReducerTyp
          }
       }
       case "SET-USERS": {
-         return {...state, user: [...state.user, ...action.users]}
+         return {...state, user: [...action.users]}
+      }
+      case "SET-CURRENT-PAGE": {
+         return {...state, currentPage: action.currentPage}
+      }
+      case "SET-TOTAL-USERS-COUNT": {
+         return {...state, totalUsersCount: action.totalCount}
       }
       default:
          return state
@@ -52,6 +65,13 @@ const usersReducer = (state = inicialState, action: ActionType): usersReducerTyp
 export const followAC = (userId: number): followACType => ({type: "FOLLOW", userId: userId})
 export const unFollowAC = (userId: number): unFollowACType => ({type: "UN-FOLLOW", userId: userId})
 export const setUsersAC = (users: userReducerType): setUsersACType => ({type: "SET-USERS", users})
+export const setCurrentPageAC = (currentPage: number): setCurrentPageACType => ({type: "SET-CURRENT-PAGE", currentPage})
+export const setTotalUsersCountAC = (totalCount: number): setTotalUsersCountACType => ({
+   type: "SET-TOTAL-USERS-COUNT",
+   totalCount
+})
+
+
 type followACType = {
    type: "FOLLOW"
    userId: number
@@ -64,5 +84,14 @@ type setUsersACType = {
    type: "SET-USERS"
    users: userReducerType
 }
+type setCurrentPageACType = {
+   type: "SET-CURRENT-PAGE"
+   currentPage: number
+}
+type setTotalUsersCountACType = {
+   type: "SET-TOTAL-USERS-COUNT"
+   totalCount: number
+}
+
 
 export default usersReducer;
