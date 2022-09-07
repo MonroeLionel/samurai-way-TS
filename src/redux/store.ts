@@ -1,5 +1,5 @@
 import {StatePropsType} from "../index";
-import profileReducer, {AddPostActionType, ChangeNewTextActionType} from "./profile-reducer";
+import profileReducer, {AddPostActionType, ChangeNewTextActionType, SetUserProfileType} from "./profile-reducer";
 import dialogReducer, {sendMessageACType, updateNewMessageBodyAC} from "./dialog-reducer";
 
 export type StoreType = {
@@ -10,9 +10,15 @@ export type StoreType = {
    _callSubscriber: (state: StatePropsType) => void
    getState: () => StatePropsType
    dispatch: (action: ActionType) => void
+
 }
 
-export type ActionType = AddPostActionType | ChangeNewTextActionType | updateNewMessageBodyAC | sendMessageACType
+export type ActionType =
+  AddPostActionType
+  | ChangeNewTextActionType
+  | updateNewMessageBodyAC
+  | sendMessageACType
+  | SetUserProfileType
 
 let store: StoreType = {
    _state: {
@@ -31,7 +37,7 @@ let store: StoreType = {
             {id: 3, message: `чо кого ? `, likeCount: 12},
          ],
          newPostText: 'ddddd',
-
+         profile: null
       },
       dialogsPage: {
          messageData: [
@@ -72,109 +78,9 @@ let store: StoreType = {
       this._callSubscriber(this._state)
 
 
-      // if (action.type === "ADD-POST") {
-      //    let newPost = {
-      //       id: 13,
-      //       message: this._state.profilepage.newPostText,
-      //       // message: action.postText,
-      //       likeCount: 12
-      //    }
-      //    this._state.profilepage.postData.push(newPost)
-      //    this._state.profilepage.newPostText = ''
-      //    this._callSubscriber(this._state)
-      // } else if (action.type === "CHANGE-NEW-TEXT") {
-      //    this._state.profilepage.newPostText = action.newText
-      //    this._callSubscriber(this._state)
-      // } else if (action.type === "UPDATE-NEW-MESSAGE-BODY") {
-      //    this._state.dialogsPage.newMessageBod = action.body
-      //    this._callSubscriber(this._state)
-      // } else if (action.type === "SEND-MESSAGE") {
-      //    let body = this._state.dialogsPage.newMessageBod
-      //    this._state.dialogsPage.newMessageBod = ''
-      //    this._state.dialogsPage.messageData.push({id: 99, message: body})
-      //    this._callSubscriber(this._state)
-      // }
    },
 }
-//
-// let state = {
-//    profilepage: {
-//       postData: [
-//          {id: 1, message: `hello`, likeCount: 22},
-//          {id: 1, message: `hello`, likeCount: 22},
-//          {id: 1, message: `hello`, likeCount: 22},
-//          {id: 1, message: `hello`, likeCount: 22},
-//          {id: 1, message: `hello`, likeCount: 22},
-//          {id: 1, message: `hello`, likeCount: 22},
-//          {id: 2, message: `шо как`, likeCount: 11},
-//          {id: 2, message: `шо как`, likeCount: 11},
-//          {id: 2, message: `шо как`, likeCount: 11},
-//          {id: 3, message: `чо кого ? `, likeCount: 12},
-//          {id: 3, message: `чо кого ? `, likeCount: 12},
-//       ],
-//       newPostText: 'ddddd',
-//
-//    },
-//    dialogsPage: {
-//       messageData: [
-//          {id: 1, message: `текст`},
-//          {id: 2, message: `еще текст`},
-//          {id: 2, message: `еще текст`},
-//          {id: 2, message: `еще текст`},
-//          {id: 2, message: `еще текст`},
-//          {id: 3, message: `типичная запись`},
-//          {id: 4, message: `типичная запись`},
-//          {id: 5, message: `типичная запись`},
-//          {id: 6, message: `типичная запись`},
-//       ],
-//       dialogData: [
-//          {id: 1, name: `света`},
-//          {id: 2, name: `дима`},
-//          {id: 3, name: `катя`},
-//          {id: 4, name: `аня`},
-//          {id: 5, name: `володя`},
-//          {id: 6, name: `павлуша`},
-//       ],
-//
-//    },
-// }
-//
-// export let testpostData: [
-//    { id: 1, message: `hello`, likeCount: 22 },
-//    { id: 1, message: `hello`, likeCount: 22 },
-//    { id: 1, message: `hello`, likeCount: 22 },
-//    { id: 1, message: `hello`, likeCount: 22 },
-//    { id: 1, message: `hello`, likeCount: 22 },
-//    { id: 1, message: `hello`, likeCount: 22 },
-//    { id: 2, message: `шо как`, likeCount: 11 },
-//    { id: 2, message: `шо как`, likeCount: 11 },
-//    { id: 2, message: `шо как`, likeCount: 11 },
-//    { id: 3, message: `чо кого ? `, likeCount: 12 },
-//    { id: 3, message: `чо кого ? `, likeCount: 12 },
-// ]
 
-//
-// export const addPost = () => {
-//    let newPost = {id: 13, message: state.profilepage.newPostText, likeCount: 12}
-//    state.profilepage.postData.push(newPost)
-//    state.profilepage.newPostText = ''
-//    rerenderEntireTree(state)
-// }
-//
-// export const updateNewPostText = (newText: string) => {
-//    state.profilepage.newPostText = newText
-//    rerenderEntireTree(state)
-// }
-// let rerenderEntireTree: (State: StatePropsType) => void = () => {
-//
-// }
-//
-//
-// export const subscribe = (observer: (State: StatePropsType) => void) => {
-//    rerenderEntireTree = observer
-// }
-//
-// export default state
 
 export default store;
 

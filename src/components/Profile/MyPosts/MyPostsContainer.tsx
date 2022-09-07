@@ -40,6 +40,7 @@ type postDataPropsTpe = {
 type MapStatePropsType = {
    newPostText: string
    postData: Array<postDataType>
+
 }
 
 type MapDispatchPropsTpe = {

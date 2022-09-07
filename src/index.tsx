@@ -3,7 +3,7 @@ import './index.css';
 import store from './redux/redux-store'
 import ReactDOM from 'react-dom';
 import './index.css';
-import App, {dialogDataType, messageDataType, postDataType} from './App';
+import App, {dialogDataType, messageDataType, postDataType, profileType} from './App';
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 
@@ -13,6 +13,7 @@ export type StatePropsType = {
    profilepage: {
       postData: Array<postDataType>
       newPostText: string
+      profile: profileType | null
    },
    dialogsPage: {
       messageData: Array<messageDataType>

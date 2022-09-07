@@ -1,9 +1,10 @@
-import {postDataType} from "../App";
+import {postDataType, profileType} from "../App";
 import {ActionType} from "./store";
 
 type profileReducerType = {
    postData: Array<postDataType>
    newPostText: string
+   profile: any | null
 }
 
 let inicialState: profileReducerType = {
@@ -21,6 +22,7 @@ let inicialState: profileReducerType = {
       {id: 3, message: `чо кого ? `, likeCount: 12},
    ],
    newPostText: 'ddddd',
+   profile: null
 }
 
 const profileReducer = (state = inicialState, action: ActionType) => {
@@ -42,6 +44,11 @@ const profileReducer = (state = inicialState, action: ActionType) => {
             newPostText: action.newText
          }
       }
+      case "SET-USER-PROFILE": {
+         return {
+            ...state, profile: action.profile
+         }
+      }
       default:
          return state
    }
@@ -51,10 +58,15 @@ export const addPostAC = (): AddPostActionType => {
    return {type: "ADD-POST"}
 }
 export const updateNewPostTextAC = (newText: string): ChangeNewTextActionType => {
-   console.log(newText)
    return {
       type: "CHANGE-NEW-TEXT",
       newText: newText
+   }
+}
+export const setUserProfile = (profile: string): SetUserProfileType => {
+   return {
+      type: "SET-USER-PROFILE",
+      profile: profile
    }
 }
 export type ChangeNewTextActionType = {
@@ -63,6 +75,9 @@ export type ChangeNewTextActionType = {
 }
 export  type AddPostActionType = {
    type: "ADD-POST",
-   // postText: string
+}
+export  type SetUserProfileType = {
+   type: "SET-USER-PROFILE",
+   profile: string
 }
 export default profileReducer;

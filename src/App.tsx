@@ -11,6 +11,7 @@ import {ActionType} from "./redux/store";
 import {DialogsContainer} from "./components/Dialog/DialogContainer";
 // import {Users} from "./components/Users/Users";
 import {UsersContainer} from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 
 export type dialogDataType = {
@@ -26,6 +27,32 @@ export type postDataType = {
    message: string
    likeCount: number
 }
+
+
+export type profileType = {
+   profile: {
+      "aboutMe": string | null,
+      "contacts": {
+         "facebook": string | null,
+         "website": string | null,
+         "vk": string | null,
+         "twitter": string | null,
+         "instagram": string | null,
+         "youtube": string | null,
+         "github": string | null,
+         "mainLink": string | null
+      },
+      "lookingForAJob": boolean,
+      "lookingForAJobDescription": string | null,
+      "fullName": string | null,
+      "userId": number,
+      "photos": {
+         "small": string,
+         "large": string
+      }
+   }
+}
+
 
 export type StatePropsType = {
    State: {
@@ -58,9 +85,7 @@ function App(props: StatePropsType) {
            {/*<Route path="/profile" component={Profile}/>*/}
            <Route path="/profile"
                   render={() =>
-                    <Profile
-                      store={props}
-                    />}
+                    <ProfileContainer/>}
            />
 
            <Route path="/users" render={() => <UsersContainer/>}/>
