@@ -4,7 +4,13 @@ import {Preloader} from "../../common/Preloader/Preloader";
 import {profileType} from "../../../App";
 
 
-export function Profileinfo(props: profileType) {
+type propsTypeProps1 = {
+   profile: profileType | null
+
+}
+
+
+export function Profileinfo(props: propsTypeProps1) {
    if (!props.profile) {
       return <Preloader/>
    }

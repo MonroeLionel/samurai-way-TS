@@ -11,7 +11,13 @@ type propsTypeProps = {
 
 }
 
-export function Profile(props: profileType) {
+
+type propsTypeProps1 = {
+   profile: profileType | null
+
+}
+
+export function Profile(props: propsTypeProps1) {
    return (
      <div>
         <Profileinfo profile={props.profile}/>

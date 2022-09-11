@@ -30,26 +30,25 @@ export type postDataType = {
 
 
 export type profileType = {
-   profile: {
-      "aboutMe": string | null,
-      "contacts": {
-         "facebook": string | null,
-         "website": string | null,
-         "vk": string | null,
-         "twitter": string | null,
-         "instagram": string | null,
-         "youtube": string | null,
-         "github": string | null,
-         "mainLink": string | null
-      },
-      "lookingForAJob": boolean,
-      "lookingForAJobDescription": string | null,
-      "fullName": string | null,
-      "userId": number,
-      "photos": {
-         "small": string,
-         "large": string
-      }
+
+   "aboutMe": string | null,
+   "contacts": {
+      "facebook": string | null,
+      "website": string | null,
+      "vk": string | null,
+      "twitter": string | null,
+      "instagram": string | null,
+      "youtube": string | null,
+      "github": string | null,
+      "mainLink": string | null
+   },
+   "lookingForAJob": boolean,
+   "lookingForAJobDescription": string | null,
+   "fullName": string | null,
+   "userId": number,
+   "photos": {
+      "small": string,
+      "large": string
    }
 }
 
@@ -59,6 +58,7 @@ export type StatePropsType = {
       profilepage: {
          postData: Array<postDataType>
          newPostText: string
+         profile: profileType | null
       },
       dialogsPage: {
          messageData: Array<messageDataType>

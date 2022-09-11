@@ -4,14 +4,16 @@ import axios from "axios";
 import {connect} from "react-redux";
 import {setUserProfile} from "../../redux/profile-reducer";
 import {AppStateType} from "../../redux/redux-store";
+import {profileType} from "../../App";
 
 
 type MapStatePropsType = {
-   profile: any
+   profile: profileType | null
 }
 
+
 type MapDispatchPropsTpe = {
-   setUserProfile: (profile: string) => void
+   setUserProfile: (profile: profileType) => void
 
 }
 
@@ -23,13 +25,14 @@ class ProfileContainer extends React.Component<UsersStatePropsType> {
    componentDidMount() {
       axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
         .then(response => {
+           debugger
            this.props.setUserProfile(response.data)
 
         })
    }
 
    render() {
-      debugger
+
       return (
         <Profile {...this.props} profile={this.props.profile}/>
       )
