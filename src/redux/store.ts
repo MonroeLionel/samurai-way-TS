@@ -1,6 +1,7 @@
 import {StatePropsType} from "../index";
 import profileReducer, {AddPostActionType, ChangeNewTextActionType, SetUserProfileType} from "./profile-reducer";
 import dialogReducer, {sendMessageACType, updateNewMessageBodyAC} from "./dialog-reducer";
+import {setUserDataActionType} from "./auth-reducer";
 
 export type StoreType = {
    _state: StatePropsType
@@ -19,6 +20,7 @@ export type ActionType =
   | updateNewMessageBodyAC
   | sendMessageACType
   | SetUserProfileType
+  | setUserDataActionType
 
 let store: StoreType = {
    _state: {
