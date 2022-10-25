@@ -1,7 +1,7 @@
 import React from "react";
 import css from "./users.module.css";
 import userGIF from "../../assets/images/user.gif";
-import {userReducerType} from "../../redux/users-reducer";
+import {toggleFollowingProgress, userReducerType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
 import axios from "axios";
 
@@ -13,6 +13,8 @@ type UsersPropsType = {
    users: userReducerType
    follow: (userId: number) => void
    unFollow: (userId: number) => void
+   toggleFollowingProgress: (FollowingProgress: boolean, userId: number) => void
+   followingInProgress: Array<number>
 }
 
 export const Users = (props: UsersPropsType) => {
@@ -49,21 +51,25 @@ export const Users = (props: UsersPropsType) => {
    </div>
    <div>
    {el.followed ?
-     <button onClick={() => {
-
+     <button disabled={props.followingInProgress.some(id => id === el.id)} onClick={() => {
+        props.toggleFollowingProgress(true, el.id)
         axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`, {
            withCredentials: true,
            headers: {"API-KEY": '3d23276c-ddcb-4cb6-9813-101eaaffca9c'}
         })
           .then(response => {
-             if (response.data.resulteCode == 0) {
+
+             if (response.data.resultCode == 0) {
                 props.unFollow(el.id)
              }
+             props.toggleFollowingProgress(false, el.id)
+
           })
 
 
      }}>Follow</button>
-     : <button onClick={() => {
+     : <button disabled={props.followingInProgress.some(id => id === el.id)} onClick={() => {
+        props.toggleFollowingProgress(true, el.id)
 
         axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`, {}, {
            withCredentials: true,
@@ -71,10 +77,12 @@ export const Users = (props: UsersPropsType) => {
 
         })
           .then(response => {
-             if (response.data.resulteCode == 0) {
+             if (response.data.resultCode == 0) {
                 props.follow(el.id)
 
              }
+             props.toggleFollowingProgress(false, el.id)
+
           })
 
      }}>Unfoolow</button>}
