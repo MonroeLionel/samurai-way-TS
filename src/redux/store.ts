@@ -1,5 +1,10 @@
 import {StatePropsType} from "../index";
-import profileReducer, {AddPostActionType, ChangeNewTextActionType, SetUserProfileType} from "./profile-reducer";
+import profileReducer, {
+   AddPostActionType,
+   ChangeNewTextActionType,
+   GetUserProfileType,
+   SetUserProfileType
+} from "./profile-reducer";
 import dialogReducer, {sendMessageACType, updateNewMessageBodyAC} from "./dialog-reducer";
 import {setUserDataActionType} from "./auth-reducer";
 
@@ -21,6 +26,7 @@ export type ActionType =
   | sendMessageACType
   | SetUserProfileType
   | setUserDataActionType
+
 
 let store: StoreType = {
    _state: {

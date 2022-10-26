@@ -1,5 +1,7 @@
 import {postDataType, profileType} from "../App";
 import {ActionType} from "./store";
+import {Dispatch} from "redux";
+import {usersAPI} from "../api/api";
 
 type profileReducerType = {
    postData: Array<postDataType>
@@ -91,6 +93,12 @@ export const setUserProfile = (profile: profileType): SetUserProfileType => {
       profile: profile
    }
 }
+export const getUserProfile = (userId: string) => (dispatch: Dispatch) => {
+   usersAPI.getProfile(userId)
+     .then(response => {
+        dispatch(setUserProfile(response))
+     })
+}
 export type ChangeNewTextActionType = {
    type: "CHANGE-NEW-TEXT",
    newText: string
@@ -100,6 +108,10 @@ export  type AddPostActionType = {
 }
 export  type SetUserProfileType = {
    type: "SET-USER-PROFILE",
+   profile: profileType
+}
+export  type GetUserProfileType = {
+   type: "GET-USER-PROFILE",
    profile: profileType
 }
 export default profileReducer;

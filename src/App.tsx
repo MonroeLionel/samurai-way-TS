@@ -86,7 +86,7 @@ function App(props: StatePropsType) {
            {/*<Route path="/profile" component={Profile}/>*/}
            <Route path="/profile/:userId?"
                   render={() =>
-                    <ProfileContainer/>}
+                    <ProfileContainer key={props.State.profilepage.profile?.userId}/>}
            />
 
            <Route path="/users" render={() => <UsersContainer/>}/>
