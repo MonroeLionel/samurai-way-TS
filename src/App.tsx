@@ -13,6 +13,7 @@ import {DialogsContainer} from "./components/Dialog/DialogContainer";
 import {UsersContainer} from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import Login from "./components/Login/Login";
 
 
 export type dialogDataType = {
@@ -101,6 +102,7 @@ function App(props: StatePropsType) {
            <Route path="/news" render={() => <News/>}/>
            <Route path="/music" render={() => <Music/>}/>
            <Route path="/setting" render={() => <Setting/>}/>
+           <Route path="/login" render={() => <Login/>}/>
         </div>
 
      </div>

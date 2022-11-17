@@ -4,6 +4,7 @@ import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {dialogDataType, messageDataType,} from "../../App";
 import {DialogPropsType} from "./DialogContainer";
+import {Redirect} from "react-router-dom";
 
 
 type propsTypeProps = {
@@ -12,6 +13,7 @@ type propsTypeProps = {
    dialogData: Array<dialogDataType>
    messageData: Array<messageDataType>
    newMessageBod: string
+   isAuth: boolean | null
 }
 
 export function Dialogs(props: DialogPropsType) {
@@ -32,7 +34,7 @@ export function Dialogs(props: DialogPropsType) {
       let body = event.currentTarget.value
       props.updateNewMessageBody(body)
    }
-
+   if (!props.isAuth) return <Redirect to={"/login"}/>
    return (
      <div className={classes.dialogs}>
         <div className={classes.dialogItem}>
