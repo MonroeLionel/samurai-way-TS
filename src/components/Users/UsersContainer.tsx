@@ -15,6 +15,8 @@ import {Users} from "./Users";
 import preloader from "./../../assets/images/loading.svg";
 import {Preloader} from "../common/Preloader/Preloader";
 import {usersAPI} from "../../api/api";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {Dialogs} from "../Dialog/Dialog";
 
 
 type MapStatePropsType = {
@@ -105,7 +107,7 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
       followingInProgress: state.usersPage.followingInProgress
    }
 }
-
+let AuthRedirectComponent = withAuthRedirect(UsersAPIComponent)
 
 export const UsersContainer = connect(mapStateToProps, {
    follow: followSuccess,
@@ -118,4 +120,4 @@ export const UsersContainer = connect(mapStateToProps, {
    getUsersThunkCreator,
    followThunkCreator,
    unFollowThunkCreator,
-})(UsersAPIComponent);
+})(AuthRedirectComponent);

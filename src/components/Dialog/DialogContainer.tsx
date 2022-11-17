@@ -5,6 +5,7 @@ import {Dialogs} from "./Dialog";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
 type propsTypeProps = {
@@ -39,7 +40,7 @@ type MapStatePropsType = {
    dialogData: Array<dialogDataType>
    messageData: Array<messageDataType>
    newMessageBod: string
-   isAuth: boolean | null
+
 }
 
 type MapDispatchPropsTpe = {
@@ -55,7 +56,7 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
       dialogData: state.dialogsPage.dialogData,
       messageData: state.dialogsPage.messageData,
       newMessageBod: state.dialogsPage.newMessageBod,
-      isAuth: state.auth.isAuth
+
    }
 
 }
@@ -71,6 +72,7 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsTpe => {
       }
    }
 }
+let AuthRedirectComponent = withAuthRedirect(Dialogs)
 
 
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
