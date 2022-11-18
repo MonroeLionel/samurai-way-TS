@@ -8,6 +8,7 @@ import {profileType} from "../../App";
 import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
 import {usersAPI} from "../../api/api";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
 type PathParamsType = {
@@ -49,8 +50,10 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => ({
    profile: state.profilepage.profile
 
 })
-let AuthRedirectComponent = withAuthRedirect(ProfileContainer)
 
-let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent)
 
-export default connect(mapStateToProps, {getUserProfile})(WithUrlDataContainerComponent)
+export default compose<React.ComponentType>(
+  connect(mapStateToProps, {getUserProfile}),
+  withRouter,
+  withAuthRedirect,
+)(ProfileContainer)
