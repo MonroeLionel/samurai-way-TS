@@ -2,7 +2,7 @@ import {StatePropsType} from "../index";
 import profileReducer, {
    AddPostActionType,
    ChangeNewTextActionType,
-   GetUserProfileType,
+   GetUserProfileType, SetStatus,
    SetUserProfileType
 } from "./profile-reducer";
 import dialogReducer, {sendMessageACType, updateNewMessageBodyAC} from "./dialog-reducer";
@@ -26,7 +26,7 @@ export type ActionType =
   | sendMessageACType
   | SetUserProfileType
   | setUserDataActionType
-
+  | SetStatus
 
 let store: StoreType = {
    _state: {
@@ -45,7 +45,8 @@ let store: StoreType = {
             {id: 3, message: `чо кого ? `, likeCount: 12},
          ],
          newPostText: 'ddddd',
-         profile: null
+         profile: null,
+         status: ""
       },
       dialogsPage: {
          messageData: [

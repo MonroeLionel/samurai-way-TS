@@ -14,13 +14,14 @@ type propsTypeProps = {
 
 type propsTypeProps1 = {
    profile: profileType | null
-
+   status: string | null
+   updateStatusTC: (status: string) => void
 }
 
 export function Profile(props: propsTypeProps1) {
    return (
      <div>
-        <Profileinfo profile={props.profile}/>
+        <Profileinfo {...props} updateStatus={props.updateStatusTC} profile={props.profile} status={props.status}/>
         <MyPostsContainer/>
      </div>
    )

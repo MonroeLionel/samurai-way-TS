@@ -1,12 +1,13 @@
 import {postDataType, profileType} from "../App";
 import {ActionType} from "./store";
 import {Dispatch} from "redux";
-import {usersAPI} from "../api/api";
+import {profileAPI, usersAPI} from "../api/api";
 
 type profileReducerType = {
    postData: Array<postDataType>
    newPostText: string
    profile: profileType | null
+   status: string
 }
 
 let inicialState: profileReducerType = {
@@ -44,7 +45,9 @@ let inicialState: profileReducerType = {
          small: "string",
          large: "string"
       }
-   }
+   },
+   status: ""
+
 }
 
 const profileReducer = (state = inicialState, action: ActionType): profileReducerType => {
@@ -67,9 +70,14 @@ const profileReducer = (state = inicialState, action: ActionType): profileReduce
          }
       }
       case "SET-USER-PROFILE": {
-         debugger
+         
          return {
             ...state, profile: action.profile
+         }
+      }
+      case "SET-STATUS": {
+         return {
+            ...state, status: action.status
          }
       }
       default:
@@ -93,10 +101,33 @@ export const setUserProfile = (profile: profileType): SetUserProfileType => {
       profile: profile
    }
 }
+export const setStatusAC = (status: string): SetStatus => {
+   console.log(status)
+   return {
+      type: "SET-STATUS",
+      status: status
+   }
+}
+
 export const getUserProfile = (userId: string) => (dispatch: Dispatch) => {
    usersAPI.getProfile(userId)
      .then(response => {
         dispatch(setUserProfile(response))
+     })
+}
+export const getStatusTC = (userId: string) => (dispatch: Dispatch) => {
+   profileAPI.getStatus(userId)
+     .then(response => {
+        dispatch(setStatusAC(response.data))
+     })
+}
+export const updateStatusTC = (status: string) => (dispatch: Dispatch) => {
+   profileAPI.updateStatus(status)
+     .then(response => {
+        if (response.data.resultCode === 0) {
+           dispatch(setStatusAC(status))
+        }
+
      })
 }
 export type ChangeNewTextActionType = {
@@ -109,6 +140,10 @@ export  type AddPostActionType = {
 export  type SetUserProfileType = {
    type: "SET-USER-PROFILE",
    profile: profileType
+}
+export  type SetStatus = {
+   type: "SET-STATUS",
+   status: string
 }
 export  type GetUserProfileType = {
    type: "GET-USER-PROFILE",

@@ -7,7 +7,8 @@ import ProfileStatus from "./ProfileStatus";
 
 type propsTypeProps1 = {
    profile: profileType | null
-
+   status: string | null
+   updateStatus: (status: string) => void
 }
 
 
@@ -15,7 +16,7 @@ export function Profileinfo(props: propsTypeProps1) {
    if (!props.profile) {
       return <Preloader/>
    }
-
+   console.log(props)
    return (
      <div className={classes.content}>
         {/* <img*/}
@@ -23,7 +24,7 @@ export function Profileinfo(props: propsTypeProps1) {
         {/*alt=""/>*/}
         <div className={classes.descriptionBloc}>
            <img src={props.profile.photos.large}/>
-           <ProfileStatus/>
+           <ProfileStatus  {...props} status={props.status}/>
         </div>
 
 

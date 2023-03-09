@@ -14,6 +14,7 @@ export type StatePropsType = {
       postData: Array<postDataType>
       newPostText: string
       profile: profileType | null
+      status: string
    },
    dialogsPage: {
       messageData: Array<messageDataType>
